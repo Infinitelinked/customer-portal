@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+   <html lang="en">
+       <head>
+            <meta charset="UTF-8">
+            <title>Client Information Capturing</title>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+            <script type="text/javascript" charset="utf8" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		    <!--<link rel="stylesheet" href="jquery-ui-1.11.2.custom/jquery-ui.css">
+			<link rel="stylesheet" href="jquery-ui-1.11.2.custom/jquery-ui.theme.min.css">
+			<script type="text/javascript" charset="utf8" src="jquery-ui-1.11.2.custom/external/jquery/jquery.js"></script>
+			<script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>-->
+            <style type="text/css">
+				.bs-example{
+					margin: 20px;
+				}
+				body{
+					margin-top:18px;
+					margin-left:100px;
+					margin-right:100px;
+					margin-bottom:40px;
+					background-repeat:no-repeat;
+					<!--background-attachment: fixed;-->
+					background-position: center; 
+					background-position: top; 
+				}
+				.cic{
+					max-width: 700px;
+					padding: 20px 12px 10px 20px;
+					font: 13px Arial, Helvetica, sans-serif;
+				}
+				.cic-heading{
+					font-weight: bold;
+					font-style: italic;
+					border-bottom: 2px solid #ddd;
+					margin-bottom: 10px;
+					font-size: 15px;
+					padding-bottom: 1px;
+				}
+				.cic label{
+					display: block;
+					margin: 0px 0px 15px 0px;
+				}
+				.cic label > span{
+					width:200px;
+					font-weight: bold;
+					float: left;
+					padding-top: 10px;
+					padding-right: 5px;
+				}
+				.cic span.required{
+					color:red;
+				}
+				.cic input.input-field{
+					width: 50%;
+				}
+				.cic input.input-field{
+					box-sizing: border-box;
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;
+					border: 1px solid #C2C2C2;
+					box-shadow: 1px 1px 4px #EBEBEB;
+					-moz-box-shadow: 1px 1px 4px #EBEBEB;
+					-webkit-box-shadow: 1px 1px 4px #EBEBEB;
+					border-radius: 3px;
+					-webkit-border-radius: 3px;
+					-moz-border-radius: 3px;
+					padding: 7px;
+					outline: none;
+				}
+				.cic .input-field:focus{
+					border: 1px solid #0C0;
+				}
+				.cic .text-field{
+					height:100px;
+					width: 50%;
+				}
+				.cic input[type=submit],
+				.cic input[type=button]{
+					border: none;
+					padding: 8px 15px 8px 15px;
+					background: #FF8500;
+					color: #fff;
+					box-shadow: 1px 1px 4px #DADADA;
+					-moz-box-shadow: 1px 1px 4px #DADADA;
+					-webkit-box-shadow: 1px 1px 4px #DADADA;
+					border-radius: 3px;
+					-webkit-border-radius: 3px;
+					-moz-border-radius: 3px;
+				}
+				.cic input[type=submit]:hover,
+				.cic input[type=button]:hover{
+					background: #EA7B00;
+					color: #fff;
+				}
+				.center-block
+				{
+					<!--margin:10px auto;-->
+					margin-top:10px;
+					text-align:center;
+					width:100%;
+				}
+				#submit
+				{
+					margin-left:93%;
+					height:30px;
+					width:80px;
+					background-color:#ffa500;
+					font-weight: bold;
+				}
+				.label
+				{
+					margin-left:92.5%;
+					font-weight:bold;
+				}
+				#footer
+				{
+					padding-top:1.5%;
+					font-weight:bold;
+					text-align:center;
+					background-color:#CCCCCC;
+					width:100%;
+					height:60px;
+				}
+				hr {
+					-moz-border-bottom-colors: none;
+					-moz-border-image: none;
+					-moz-border-left-colors: none;
+					-moz-border-right-colors: none;
+					-moz-border-top-colors: none;
+					border-color: #EEEEEE -moz-use-text-color #FFFFFF;
+					border-style: solid none;
+					border-width: 1px 0;
+					margin: 5px 0;
+				}
+				#carrier_image
+				{
+					width:20px;
+					height:25px;
+				}
+            </style>
+            <script>
+			    /*$(function() {
+				    $( "#accordion" ).accordion();
+                });*/
+				
+			    $(document).ready(function(){
+                    var counter = 2;
+					var counterr = 2;
+                    $("#add1").click(function () {
+					    $("#remove1").show();
+					    if(counter>10){
+                           alert("Only 10 textboxes allow");
+                           return false;
+	                    }   
+ 
+	                    var newTextBoxDiv = $(document.createElement('label')).attr("id", 'TextBoxDiv' + counter);
+                        newTextBoxDiv.after().html('<label for="field1"><span>Role Name'+ counter + '<span class="required"></span></span>' +'<input type="text" class="input-field" name="field1' + counter +  '" id="field1' + counter + '" value="" ></label>');
+                        newTextBoxDiv.appendTo("#TextBoxesGroup");
+                        counter++;
+                    });
+ 
+                    $("#remove1").click(function () {
+	                    if(counter==1){
+						   $("#remove1").hide();
+						   //alert("No more textbox to remove");
+						   return false;
+						}   
+                        counter--;
+                        $("#TextBoxDiv" + counter).remove();
+                    });
+                        
+					    $("#rmv_crr").hide(); 
+                    $("#add_crr").click(function () {
+					    $("#rmv_crr").show();
+                        if(counterr>10){
+                           alert("Only 10 textboxes allow");
+                           return false;
+	                    }   
+ 
+	                    var newTextBoxDiv = $(document.createElement('label')).attr("id", 'cr_contactdetails' + counterr);
+                        newTextBoxDiv.after().html('<label for="field1"><span>Carrier Representatives Contact Details'+ counterr + '</span>' +'<input type="text" class="input-field" name="field1' + counterr +  '" id="field1' + counterr + '" value="" ></label>');
+                        newTextBoxDiv.appendTo("#cr_contactdetailsgroup");
+                        counterr++;
+                    });
+					
+				    $("#rmv_crr").click(function () {
+	                    if(counterr==1){
+						   $("#rmv_crr").hide(); 
+						   //alert("No more contact to remove"); 
+                           return false;
+						}   
+                        counterr--;
+                        $("#cr_contactdetails" + counterr).remove();
+							
+                    });
+					
+                });
+		    </script>
+			<script>
+			function carrier(){
+			var carrier_name=document.getElementById("field1").value;
+			if(carrier_name=="Cricket"){
+			document.getElementById("vendor1").value="Progressive Device Leasing";
+			document.getElementById("vendor2").value="Clover Trade-Up";
+			document.getElementById("vendor3").value="Bright Point";
+			document.getElementById("vendor4").value="Callidus";
+			document.getElementById("vendor5").value="TIO";
+			}
+			}
+			</script>
+			<!--<script>
+			$("#add1").click(function(){
+			$("#remove1").show();
+			});
+			</script>-->
+        </head>
+        <body>
+            <div>
+				<div class="center-block">
+					<img style="width:300px;height:100px;" src="logo.png">
+				</div>
+			</div>
+			<form method="post" action="../../index.html">
+				<div>
+					<input type="submit" id="submit" name="submit" class="btn btn-warning" value="LOGOUT" />
+				</div>
+			</form>
+			<hr>
+			<div>
+				<span class="label label-success">Welcome User</span>
+			</div>
+            <div class="bs-example">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+						<!--<div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1.Company Details</a>
+                          </h4>
+                        </div>-->
+						<div class="panel-heading accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                          <h4 class="panel-title">
+                            <a href="#">1.Company Details</a>
+                          </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+				                <div class="cic">
+				                <div class="cic-heading">Provide your information</div>
+                                    <form action="" method="post">
+								        <label for="field1"><span>Company Name<span class="required">*</span></span><input type="text" class="input-field" name="field1" value="" /></label>
+										
+								        <label for="field2"><span>Company DBA Name<span class="required">*</span></span><input type="text" class="input-field" name="field2" value="" /></label>
+										
+								        <label for="field3"><span>Company Logo<span class="required">*</span></span><input type="file" class="file-field" name="field3" value="" /></label>
+										
+								        <label for="field4"><span>Dealer Owner Name<span class="required">*</span></span><input type="text" class="input-field" name="field4" value="" /></label>
+										
+										<label for="field5"><span>Dealer Phone Number<span class="required">*</span></span><input type="text" pattern="[7-9]{1}[0-9]{9}" title="Phone number with 7-9 and remaing 9 digit with 0-9" class="input-field" name="field5" value="" /></label>
+										
+										<label for="field5"><span>Dealer Email ID<span class="required">*</span></span><input type="email" class="input-field" name="field5" value="" /></label>
+										
+								        <label for="field6"><span>Decision Making Authority<span class="required">*</span></span><input type="text" class="input-field" name="field6" value="" /></label>
+										
+								        <label for="field7"><span>Operations Point Of Contact<span class="required">*</span></span><input type="text" class="input-field" name="field7" value="" /></label>
+										
+								        <label for="field8"><span>Company Organization Chart<span class="required">*</span></span><input type="file" class="file-field" name="field8" value="" /></label>
+										
+								        <label for="field9"><span>Company Website Address<span class="required">*</span></span><input type="text" class="input-field" name="field9" value="" /></label>
+										
+								        <label><span>&nbsp;</span><input type="submit" value="Save" />&nbsp;<input type="button" value="Edit" /> </label>
+										
+							        </form>
+                                </div>
+                            </div>
+			            </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <!--<div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2. Carrier</a>
+                          </h4>
+                        </div>-->
+						<div class="panel-heading accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                          <h4 class="panel-title">
+                            <a href="#">2. Carrier</a>
+                          </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+				                <div class="cic">
+				                <div class="cic-heading">Provide your information</div>
+                                    <form action="" method="post">
+								        <label for="field1"><span>Carrier Name<span class="required">*</span></span><input type="text" class="input-field" name="field1" value="" id="field1" onkeyup="carrier()"/></label>
+								        <label for="field2"><span>Web Address<span class="required">*</span></span><input type="text" class="input-field" name="field2" value="" /></label>
+										<div id="cr_contactdetailsgroup">
+											<div id="cr_contactdetails">
+												<label for="field3"><span>Carrier Representatives Contact Details<span class="required">*</span></span><input type="text" class="input-field" name="field3" value="" />
+												<button type="button" id="add_crr"><img id="carrier_image" src="Add.png"/></button>
+												<button type="button" id="rmv_crr"><img id="carrier_image" src="Delete.png" /></button></label>
+											</div>
+										</div>
+								        <label for="field4"><span>Point Of Sale System<span class="required">*</span></span><input type="text" class="input-field" name="field4" value="" /></label>
+								        <label for="field5"><span>Carrier Portals<span class="required">*</span></span><input type="text" class="input-field" name="field5" value="" /></label>
+								        <label><span>&nbsp;</span><input type="submit" value="Save" />&nbsp;<input type="button" value="Edit" /> </label>
+							        </form>
+                                </div>
+                            </div>
+			            </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <!--<div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">3.Market Details</a>
+                          </h4>
+                        </div>-->
+						<div class="panel-heading accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                          <h4 class="panel-title">
+                            <a href="#">3.Market Details</a>
+                          </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+				                <div class="cic">
+						        <div class="cic-heading">Provide your information</div>
+                                    <form action="" method="post">
+								        <label for="field1"><span>Number Of Markets<span class="required">*</span></span><input type="text" class="input-field" name="field1"/></label>
+								        <label for="field2"><span>Market File Uploads<span class="required">*</span></span><input type="file" class="file-field" name="field2"/></label>
+								        <label><span>&nbsp;</span><input type="submit" value="Save" />&nbsp;<input type="button" value="Edit" /> </label>
+					                </form>
+                                </div>
+				            </div>
+				        </div>
+		            </div>
+		            <div class="panel panel-default">
+                        <!--<div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">4 Stores Details</a>
+                          </h4>
+                        </div>-->
+						<div class="panel-heading accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                          <h4 class="panel-title">
+                            <a href="#">4. Stores Details</a>
+                          </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse">
+                            <div class="panel-body">
+					            <div class="cic">
+					            <div class="cic-heading">Provide your information</div>
+                                    <form action="" method="post">
+								        <label for="field1"><span>Number of stores<span class="required">*</span></span><input type="text" class="input-field" name="field1"/></label>
+								        <label for="field5"><span>Calling Tree<span class="required">*</span></span><input type="file" class="file-field" name="field5" value="" /></label>
+								        <label><span>&nbsp;</span><input type="submit" value="Save" />&nbsp;<input type="button" value="Edit" /> </label>
+					                </form>
+					            </div>
+                            </div>
+                        </div>
+                    </div>
+		            <div class="panel panel-default">
+                        <!--<div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">5. Roles Information</a>
+                          </h4>
+                        </div>-->
+						<div class="panel-heading accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                          <h4 class="panel-title">
+                            <a href="#">5. Roles Information</a>
+                          </h4>
+                        </div>
+                        <div id="collapseFive" class="panel-collapse collapse">
+                            <div class="panel-body">
+				                <div class="cic">
+						        <div class="cic-heading">Provide your information</div>
+                                    <form action="" method="post">
+								        <div id="TextBoxesGroup">
+						                <div id="TextBoxDiv">
+								           <label for="field1"><span>Role Name<span class="required">*</span></span><input type="input" class="input-field" name="field1" id="field1" value="" /></label>
+								        </div>
+							            </div>
+								           <label><span>&nbsp;</span><input type="submit" value="Save" />&nbsp;<input type="button" id="add1" value="Add" />&nbsp;<input type="button" id="remove1" value="Remove" hidden/> </label>
+							    </div>
+					                </form>
+				            </div>
+						</div>
+                    </div>
+		            <div class="panel panel-default">
+                        <!--<div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">6. Employee Details</a>
+                          </h4>
+                        </div>-->
+						<div class="panel-heading accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                          <h4 class="panel-title">
+                            <a href="#">6. Employee Details</a>
+                          </h4>
+                        </div>
+                        <div id="collapseSix" class="panel-collapse collapse">
+                            <div class="panel-body">
+				                <div class="cic">
+						        <div class="cic-heading">Provide your information</div>
+							        <form action="" method="post">
+								        <label for="field1"><span>Employee Details<span class="required">*</span></span><input type="file" class="file-field" name="field1" value="" /></label>
+								        <label><span>&nbsp;</span><input type="submit" value="Save" />&nbsp;<input type="button" value="Edit" /> </label>
+							        </form>
+						        </div>
+				            </div>
+                        </div>
+                    </div>
+		            <div class="panel panel-default">
+                        <!--<div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">7. Vendor Systems</a>
+                          </h4>
+                        </div>-->
+						<div class="panel-heading accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+                          <h4 class="panel-title">
+                            <a href="#">7. Vendor Systems</a>
+                          </h4>
+                        </div>
+                        <div id="collapseSeven" class="panel-collapse collapse">
+                            <div class="panel-body">
+				                <div class="cic">
+						        <div class="cic-heading">Provide your information</div>
+							        <form action="" method="post">
+								        <label for="field1"><span>Device Leasing Program<span class="required">*</span></span><input type="text" class="input-field" name="field1" value="" id="vendor1" /></label>
+								        <label for="field2"><span>Trade Up Program<span class="required">*</span></span><input type="text" class="input-field" name="field2" value="" id="vendor2" /></label>
+								        <label for="field3"><span>Inventory Ordering Portal<span class="required">*</span></span><input type="text" class="input-field" name="field3" value="" id="vendor3" /></label>
+								        <label for="field4"><span>Carriers Commission Portal<span class="required">*</span></span><input type="text" class="input-field" name="field4" value="" id="vendor4" /></label>
+								        <label for="field5"><span>Bill Payment Portal<span class="required">*</span></span><input type="text" class="input-field" name="field5" value="" id="vendor5" /></label>
+								        <label><span>&nbsp;</span><input type="submit" value="Save" />&nbsp;<input type="button" value="Edit" /> </label>
+							        </form>
+						        </div>
+                            </div>
+                        </div>
+                    </div>
+		            <div class="panel panel-default">
+                        <!--<div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseEight">8.Smart solutions</a>
+                          </h4>
+                        </div>-->
+						<div class="panel-heading accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">
+                          <h4 class="panel-title">
+                            <a href="#">8.Smart solutions</a>
+                          </h4>
+                        </div>
+                        <div id="collapseEight" class="panel-collapse collapse">
+                            <div class="panel-body">
+				                <div class="cic">
+						        <div class="cic-heading">Provide your information</div>
+							        <form action="" method="post">
+								        <label for="field1"><input type="checkbox" class="chkbox" name="field1" /><span>Smart HR</span></label>
+								        <label for="field2"><input type="checkbox" class="chkbox" name="field2" /><span>Smart Audit</span></label>
+								        <label for="field3"><input type="checkbox" class="chkbox" name="field3" /><span>Commisions & Loss Preventions</span></label>
+								        <br>
+								        <br>
+								        <label for="field4"><input type="checkbox" class="chkbox" name="field4" /><span>Inventory</span></label>
+								        <label for="field5"><input type="checkbox" class="chkbox" name="field5" /><span>Business Intelligence</span></label>
+								        <label><span>&nbsp;</span><input type="submit" value="Save" /></label>
+							        </form>
+					            </div>
+			                </div>
+						</div>
+					</div>
+				</div>
+            </div>
+		<hr>
+			<div id="footer">©Infinite Linked Solutions. All rights reserved.</div>
+		</body>
+    </html>                                		                                		
